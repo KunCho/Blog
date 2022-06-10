@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>安卓okhttp网络框架使用说明 | 前端日常开发记录</title>
+
+  
+
+  
+  <meta name="description" content="GHttp1.post请求12345678910111213141516171819202122ResetPsdParam psdParam &amp;#x3D; new ResetPsdParam();psdParam.code &amp;#x3D; code;psdParam.password &amp;#x3D; n">
+  
+
+  
+  
+  <meta name="keywords" content="Android">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="安卓okhttp网络框架使用说明"/>
+
+  <meta property="og:site_name" content="前端日常开发记录"/>
+
+  
+  <meta property="og:image" content="/Blog/favicon.ico"/>
+  
+
+  <link href="/Blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/Blog/atom.xml" title="前端日常开发记录" type="application/atom+xml">
+  <link rel="stylesheet" href="/Blog/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/Blog/">前端日常开发记录</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>安卓okhttp网络框架使用说明</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/Blog/2022/06/09/安卓okhttp网络请求框架使用说明/" rel="bookmark">
+        <time class="entry-date published" datetime="2022-06-09T05:58:38.969Z">
+          2022-06-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h1 id="GHttp"><a href="#GHttp" class="headerlink" title="GHttp"></a>GHttp</h1><h2 id="1-post请求"><a href="#1-post请求" class="headerlink" title="1.post请求"></a>1.post请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ResetPsdParam psdParam &#x3D; new ResetPsdParam();</span><br><span class="line">psdParam.code &#x3D; code;</span><br><span class="line">psdParam.password &#x3D; newPwd;</span><br><span class="line">psdParam.phone &#x3D; newPwd;</span><br><span class="line">GHttp.post(ApiConstant.resetpasswordbyphone)</span><br><span class="line">        .upObject(psdParam)</span><br><span class="line">        .mockUrl(&quot;http:&#x2F;&#x2F;172.17.100.16:7780&#x2F;mockjsdata&#x2F;8&#x2F;xxxx&quot;)</span><br><span class="line">        .mock(true)</span><br><span class="line">        .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)&#x2F;&#x2F;</span><br><span class="line">        .cacheKey(&quot;request_failed_read_cache&quot;)&#x2F;&#x2F;</span><br><span class="line">        .cacheTime(5000)            &#x2F;&#x2F; 单位毫秒.5秒后过期</span><br><span class="line">        .tag(getView()) &#x2F;&#x2F;必须有</span><br><span class="line">        .execute(new GJCallback&lt;BaseBean&gt;(this, true,&#39;加载中&#39;) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onGSuccess(GResponse&lt;BaseBean&gt; response) &#123;</span><br><span class="line">                if (response.isOk()) &#123;</span><br><span class="line">                    getView().onResponse(MODIFYTYPE, getView().getContext().getResources().getString(R.string.string_forgetpwd_success));</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    getView().onFailure(MODIFYTYPE, response.message);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="2-get请求"><a href="#2-get请求" class="headerlink" title="2.get请求"></a>2.get请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GHttp.get(ApiConstant.getvalidatecode)</span><br><span class="line">               .params(&quot;phone&quot;,phone)</span><br><span class="line">               .params(&quot;codeType&quot;,2)</span><br><span class="line">               .mockUrl(&quot;全路径url&quot;)</span><br><span class="line">               .mock(true)</span><br><span class="line">               .tag(getView())</span><br><span class="line">               .execute(new GJCallback&lt;BaseBean&gt;(this,true) &#123;</span><br><span class="line">                   @Override</span><br><span class="line">                   public void onGSuccess(GResponse&lt;BaseBean&gt; response) &#123;</span><br><span class="line">                       if (response.isOk()) &#123;</span><br><span class="line">                           getView().onResponse(CODETYPE, getView().getContext().getResources().getString(R.string.string_codeget_success));</span><br><span class="line">                       &#125;else &#123;</span><br><span class="line">                           getView().onFailure(response.code, response.message);</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="3-无回调请求"><a href="#3-无回调请求" class="headerlink" title="3.无回调请求"></a>3.无回调请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GHttp.get(&quot;api&#x2F;loginout&quot;)</span><br><span class="line">                .params(&quot;key&quot;, 1)</span><br><span class="line">                .tag(getView())</span><br><span class="line">                .execute();</span><br></pre></td></tr></table></figure>
+<h2 id="4-文件上传"><a href="#4-文件上传" class="headerlink" title="4.文件上传"></a>4.文件上传</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GHttp.post(&quot;&#x2F;store&#x2F;api&#x2F;file&#x2F;postFile&quot;)</span><br><span class="line">                .tag(getView())</span><br><span class="line">                .isMultipart(true)</span><br><span class="line">                .params(&quot;file&quot;, file, file.getName(), MediaType.parse(&quot;application&#x2F;json&quot;))</span><br><span class="line">                .params(&quot;targetPath&quot;, targetPath)</span><br><span class="line">                .params(&quot;fileName&quot;, file.getName())</span><br><span class="line">                .execute(new GJCallback&lt;FeedBackBean&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onGSuccess(GResponse&lt;FeedBackBean&gt; response) &#123;</span><br><span class="line">                        if (response.isOk()) &#123;</span><br><span class="line">                        </span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                        </span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/Blog/categories/移动端开发/">移动端开发</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/Blog/tags/Android/">Android</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2022 前端日常开发记录
+    
+  </p>
+</footer>
+    
+    
+  </div>
+</div>
+</body>
+</html>

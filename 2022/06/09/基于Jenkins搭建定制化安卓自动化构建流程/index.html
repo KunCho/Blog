@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于Jenkins搭建定制化安卓自动化构建流程 | 前端日常开发记录</title>
+
+  
+
+  
+  <meta name="description" content="想做这个事情的背景：
+减少在开发过程中因为打包所浪费的时间；
+
+为测试同事提供自动打包工具；
+
+不侵入代码，自主设置需要使用的版本号。（由于目前的开发流程，会同时并行多个需求开发，而目前智店通由于采用的是RN的技术做移动端App开发，所以在测试提测期间，会通过不同版本号下发不同热更内容，来方便测试同">
+  
+
+  
+  
+  <meta name="keywords" content="Android">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="基于Jenkins搭建定制化安卓自动化构建流程"/>
+
+  <meta property="og:site_name" content="前端日常开发记录"/>
+
+  
+  <meta property="og:image" content="/Blog/favicon.ico"/>
+  
+
+  <link href="/Blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/Blog/atom.xml" title="前端日常开发记录" type="application/atom+xml">
+  <link rel="stylesheet" href="/Blog/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/Blog/">前端日常开发记录</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>基于Jenkins搭建定制化安卓自动化构建流程</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/Blog/2022/06/09/基于Jenkins搭建定制化安卓自动化构建流程/" rel="bookmark">
+        <time class="entry-date published" datetime="2022-06-09T07:20:59.796Z">
+          2022-06-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="想做这个事情的背景："><a href="#想做这个事情的背景：" class="headerlink" title="想做这个事情的背景："></a>想做这个事情的背景：</h3><ol>
+<li><p>减少在开发过程中因为打包所浪费的时间；</p>
+</li>
+<li><p>为测试同事提供自动打包工具；</p>
+</li>
+<li><p>不侵入代码，自主设置需要使用的版本号。（由于目前的开发流程，会同时并行多个需求开发，而目前智店通由于采用的是RN的技术做移动端App开发，所以在测试提测期间，会通过不同版本号下发不同热更内容，来方便测试同事测试需求，但相应的对于前端开发会基于不同版本号打不同测试包）</p>
+</li>
+</ol>
+<h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><p>利用Jenkins的自动化构建流程工具将安卓打包流程梳理成一个自动化任务。<br>其中配合Jenkins的丰富插件可以实现上述需求。</p>
+<h3 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h3><ol>
+<li><p>通过Jenkins新建cstore_android的自动化构建项目；</p>
+</li>
+<li><p>设置参数化构建的参数选项；</p>
+</li>
+<li><p>设置源码拉取地址；</p>
+</li>
+<li><p>配置构建触发器，配置gradle打包命令，目前使用的命令是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gradle task</span><br><span class="line">gradle clean</span><br><span class="line">gradle assemble$&#123;ENV&#125; -PVERSIONNAME&#x3D;$&#123;VERSIONNAME&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>gradle命令执行完毕后，利用myqr库，将打包路径生成二维码图片，并保存至相应目录；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myqr http:&#x2F;&#x2F;localhost:8080&#x2F;downloadApk&#x2F; -n ___.png -v 1 -l L -d &#x2F;Users&#x2F;zhaokun&#x2F;Library&#x2F;apache-tomcat-9.0.62&#x2F;webapps&#x2F;ROOT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>（利用myqr库，需要为Jenkins配置Python的环境变量，同时安装Python的pip包管理工具）</p>
+</li>
+<li><p>构建后操作配置通知邮件。</p>
+</li>
+</ol>
+<h3 id="具备的功能："><a href="#具备的功能：" class="headerlink" title="具备的功能："></a>具备的功能：</h3><ol>
+<li><p>参数化构建流程，支持选择分支、设置版本号、设置打包环境；</p>
+</li>
+<li><p>构建成功邮箱通知；</p>
+</li>
+<li><p>提供下载地址，可扫描二维码下载；（由于测试的过程中大部分都是使用测试手机，可能没有登录微信或者邮箱，提供简单的扫描二维码下载很有必要）</p>
+</li>
+</ol>
+<h3 id="最终实现的邮件通知效果"><a href="#最终实现的邮件通知效果" class="headerlink" title="最终实现的邮件通知效果"></a>最终实现的邮件通知效果</h3><p><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1654846008411/ff06fd04-635f-4bd2-8adf-ae2616d2a6e4.png" alt="image.png"></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/Blog/categories/移动端开发/">移动端开发</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/Blog/tags/Android/">Android</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2022 前端日常开发记录
+    
+  </p>
+</footer>
+    
+    
+  </div>
+</div>
+</body>
+</html>
