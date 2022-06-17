@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动POS购物车优化实践 | 前端日常开发记录</title>
+
+  
+
+  
+  <meta name="description" content="目前移动POS购物车存在的问题
+购物车搜索商品后加车耗时较长，用户等待时间过长，体验较差；
+提交订单时间过长，用户等待时间过长，体验较差;
+每次网络请求，都会触发loading动画，给人视觉上慢的体验;
+保存购物车重新加载后，会出现接口重复调用问题。
+
+分析原因
+接口冗余字段过多，返回报文过大，前端">
+  
+
+  
+  
+  <meta name="keywords" content="React-Native">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="移动POS购物车优化实践"/>
+
+  <meta property="og:site_name" content="前端日常开发记录"/>
+
+  
+  <meta property="og:image" content="/Blog/favicon.ico"/>
+  
+
+  <link href="/Blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/Blog/atom.xml" title="前端日常开发记录" type="application/atom+xml">
+  <link rel="stylesheet" href="/Blog/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/Blog/">前端日常开发记录</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>移动POS购物车优化实践</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/Blog/2022/06/16/移动POS购物车优化实践/" rel="bookmark">
+        <time class="entry-date published" datetime="2022-06-16T01:53:57.604Z">
+          2022-06-16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="目前移动POS购物车存在的问题"><a href="#目前移动POS购物车存在的问题" class="headerlink" title="目前移动POS购物车存在的问题"></a>目前移动POS购物车存在的问题</h4><ul>
+<li>购物车搜索商品后加车耗时较长，用户等待时间过长，体验较差；</li>
+<li>提交订单时间过长，用户等待时间过长，体验较差;</li>
+<li>每次网络请求，都会触发loading动画，给人视觉上慢的体验;</li>
+<li>保存购物车重新加载后，会出现接口重复调用问题。</li>
+</ul>
+<h4 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h4><ol>
+<li>接口冗余字段过多，返回报文过大，前端处理数据耗时过长；</li>
+<li>购物车的所有业务数据均在一个接口返回，后端查询处理响应数据时间过长；</li>
+<li>前端每一次触发网络请求，都会走loading的加载动画，每次执行动画会产生耗时；</li>
+<li>前端存在多处重复请求接口的地方，过多的网络请求也会触发页面多次渲染页面；</li>
+<li>提交订单时间的时候，会触发多个拦截校验接口。</li>
+</ol>
+<h4 id="前端解决方式"><a href="#前端解决方式" class="headerlink" title="前端解决方式"></a>前端解决方式</h4><ol>
+<li>购物车接口拆分，对大数据推荐接口拆分、会员信息接口拆分；</li>
+<li>提交订单校验接口合并；</li>
+<li>前端页面数据按需加载，减少重复请求；</li>
+<li>删除前端无用的逻辑；</li>
+<li>开发包增加关键接口时间统计，方便分析耗时阻塞点；</li>
+<li>对加车进行防连击处理，防止触发多次请求。</li>
+</ol>
+<h4 id="常见卡顿原因"><a href="#常见卡顿原因" class="headerlink" title="常见卡顿原因"></a>常见卡顿原因</h4><p>引起卡顿的原因有很多种，过度绘制，js执行逻辑耗时过久，动画卡顿。内存问题等等。</p>
+<ol>
+<li><p>开发模式</p>
+</li>
+<li><p>console.log语句， 在运行打好了离线包的应用时，控制台大量打印语句可能会拖累 JavaScript 线程。</p>
+</li>
+<li><p>使用动画改变图片的尺寸时，UI 线程掉帧<br>在 iOS 上，每次调整 Image 组件的宽度或者高度，都需要重新裁剪和缩放原始图片。这个操作开销会非常大，尤其是大的图片。比起直接修改尺寸，更好的方案是使用transform: [{scale}]的样式属性来改变尺寸。比如当你点击一个图片，要将它放大到全屏的时候，就可以使用这个属性。</p>
+</li>
+<li><p>在重绘一个几乎没有什么变化的页面时，JS 帧率严重降低</p>
+</li>
+<li><p>Touchable 系列组件不能很好的响应<br>有些时候，如果我们有一项操作与点击事件所带来的透明度改变或者高亮效果发生在同一帧中，那么有可能在onPress函数结束之前我们都看不到这些效果。比如在onPress执行了一个setState的操作，这个操作需要大量计算工作并且导致了掉帧。对此的一个解决方案是将onPress处理函数中的操作封装到requestAnimationFrame中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">handleOnPress() &#123;</span><br><span class="line">  requestAnimationFrame(() &#x3D;&gt; &#123;</span><br><span class="line">    this.doExpensiveAction();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="rn性能优化列举"><a href="#rn性能优化列举" class="headerlink" title="rn性能优化列举"></a>rn性能优化列举</h4><ol>
+<li><p>首屏渲染问题</p>
+</li>
+<li><p>图片问题<br>rn开发时本地图标为了统一往往放在js端，极端时（如一个页面加载几十上百张图片）可能会有性能问题。这是因为如果资源从 javascript 包中加载， RN 需要先从包中拿到资源，然后通过bridge把资源传送到 原生UI 层去渲染。而如果资源已经存在在原生端，那么 React 可以直接告知 UI 层去渲染具体的图片，无需通过这个bridge引入或者转入图片资源。 当然不会有这类问题，但是要js端图片要注意压缩，使其不太大，图片越大，性能问题越容易凸显。webP，jpg优先</p>
+</li>
+<li><p>缓存<br>各种需要的，有必要的缓存，如一个生日日期选择picker组件，数据源大概有100(年)x12(月)x30(天)这么多条数据，如果每次弹出picker都需要计算这些数据，还是会稍微有点延迟，这里可以缓存下来，甚至本地数据存储起来，以后拿出来直接使用</p>
+</li>
+<li><p>延迟加载<br>页面打开，优先执行那些跟页面展示有关的代码，其他的如埋点，上传状态，gif动画都可以稍后执行。对那些触摸响应事件后才需要展示的组件，或者根据接口返回才能决定是否展示的组件，一开始甚至都可以不用import，直到确定要展示时才局部import导入组件展示。对长列表页面，图片较多时，在页面范围之外的图片可以先不展示，直到滚动后发现图片在屏幕上面显示了再展示</p>
+</li>
+<li><p>动画<br>普通动画如移动，缩放等直接使用LayoutAnimation，性能更好。复杂点的动画才使用Animated。对帧动画这种需要快速更新state触发动画的场景，可以使用setNativeProps直接修改原生属性（某些场合如背景动画，gif图片可能不是很好的选择，因为gif可能会很大，导致初次解压时出现明显卡顿现象，而且安卓上gif图片首轮显示效果不佳）。Animated： useNativeDriver为true，则会一次性将动画信息发送给原生端让原生去驱动动画，性能更佳。 否则js端会不断注册定时器事件，让原生端不断回调js方法更改组件的setNativeProps值产生动画，因为动画配置信息在每一帧都在原生和js端通信性能有所损耗。</p>
+</li>
+<li><p>响应速度<br>由于js是单线程，当在执行一些计算量很大的任务时可能会造成堵塞卡顿现象。此时可以将任务稍微延后执行，避免大量任务在同一个js 事件循环中导致其他任务无法执行。相应的方法有InteractionManager,requestAnimationFrame,setTimeOut(0)等，原理都大同小异。</p>
+</li>
+<li><p>刷新问题<br>每次setState导致的render都会进行一次内存中diff计算，尽管diff效率很高(O(n))，但是还是应该避免不必要的diff。 Pure组件、自定义shouldComponentUpdate实现避免不必要的刷新<br>shouldComponentUpdate<br>多余提一句，在使用shouldComponentUpdate的时候，要谨慎使用。这个方法就是利用shouldComponentUpdate的消耗来换取render的消耗。<br>当某些小的、调用的次数少的component，就没有必要添加shouldComponentUpdate检查。<br>当组件够大，够复杂，可以考虑使用这个方法来减少re-render的消耗。当然，还是需要考虑用这个方法的消耗和diff&amp;render的消耗比起来哪个更划算。</p>
+</li>
+<li><p>预加载<br>对一些重要的，很可能会用到的内容预先加载，例如图片浏览器，当浏览某一张图片时可以预加载前后两张图片，优化用户体验。</p>
+</li>
+<li><p>FlatList或SectionList优化<br>Item组件使用PureComponent;<br>当使用component时，父组件的state或prop更新时，无论子组件的state、prop是否更新，都会触发子组件的更新，这会形成很多没必要的render，浪费很多性能；pureComponent的优点在于：pureComponent在shouldComponentUpdate只进行浅层的比较，只要外层对象没变化，就不会触发render,减少了不必要的render，当遇到复杂数据结构时，可以将一个组件拆分成多个pureComponent，以这种方式来实现复杂数据结构，以期达到节省不必要渲染的目的，如：表单、复杂列表、文本域等情况。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/Blog/categories/移动端开发/">移动端开发</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/Blog/tags/React-Native/">React-Native</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2022 前端日常开发记录
+    
+  </p>
+</footer>
+    
+    
+  </div>
+</div>
+</body>
+</html>
