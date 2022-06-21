@@ -8,14 +8,13 @@
   
 
   
-  <meta name="description" content="目前移动POS购物车存在的问题
+  <meta name="description" content="目前移动POS购物车存在的问题由于购物车目前承载的内容比较多，相应的在店员使用过程中会存在以下的使用体验问题。
+
+
 购物车搜索商品后加车耗时较长，用户等待时间过长，体验较差；
 提交订单时间过长，用户等待时间过长，体验较差;
 每次网络请求，都会触发loading动画，给人视觉上慢的体验;
-保存购物车重新加载后，会出现接口重复调用问题。
-
-分析原因
-接口冗余字段过多，返回报文过大，前端">
+保存购物车重">
   
 
   
@@ -84,32 +83,40 @@
   <div class="article-content">
     <div class="entry">
       
-        <h4 id="目前移动POS购物车存在的问题"><a href="#目前移动POS购物车存在的问题" class="headerlink" title="目前移动POS购物车存在的问题"></a>目前移动POS购物车存在的问题</h4><ul>
+        <h4 id="目前移动POS购物车存在的问题"><a href="#目前移动POS购物车存在的问题" class="headerlink" title="目前移动POS购物车存在的问题"></a>目前移动POS购物车存在的问题</h4><p>由于购物车目前承载的内容比较多，相应的在店员使用过程中会存在以下的使用体验问题。</p>
+<p><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1655435972848/1907cab9-f028-49cf-8de4-28e8f5475bf4.png" alt="image.png"></p>
+<ul>
 <li>购物车搜索商品后加车耗时较长，用户等待时间过长，体验较差；</li>
 <li>提交订单时间过长，用户等待时间过长，体验较差;</li>
 <li>每次网络请求，都会触发loading动画，给人视觉上慢的体验;</li>
 <li>保存购物车重新加载后，会出现接口重复调用问题。</li>
 </ul>
-<h4 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h4><ol>
+<h4 id="分析前端原因"><a href="#分析前端原因" class="headerlink" title="分析前端原因"></a>分析前端原因</h4><ol>
 <li>接口冗余字段过多，返回报文过大，前端处理数据耗时过长；</li>
 <li>购物车的所有业务数据均在一个接口返回，后端查询处理响应数据时间过长；</li>
 <li>前端每一次触发网络请求，都会走loading的加载动画，每次执行动画会产生耗时；</li>
-<li>前端存在多处重复请求接口的地方，过多的网络请求也会触发页面多次渲染页面；</li>
+<li>前端存在多处同一接口重复调用的地方，过多的网络请求也会触发页面多次渲染页面；</li>
 <li>提交订单时间的时候，会触发多个拦截校验接口。</li>
 </ol>
+<h4 id="改造前移动POS前端购物车流程以及提交订单流程"><a href="#改造前移动POS前端购物车流程以及提交订单流程" class="headerlink" title="改造前移动POS前端购物车流程以及提交订单流程"></a>改造前移动POS前端购物车流程以及提交订单流程</h4><p><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1655436239385/25bfb894-ecdb-48b0-bc3a-29cc4d329503.png" alt="image.png"><br><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1655436360801/ff79c84d-7f2f-474a-a019-45bf8e429201.png" alt="image.png"></p>
 <h4 id="前端解决方式"><a href="#前端解决方式" class="headerlink" title="前端解决方式"></a>前端解决方式</h4><ol>
 <li>购物车接口拆分，对大数据推荐接口拆分、会员信息接口拆分；</li>
-<li>提交订单校验接口合并；</li>
+<li>提交订单校验接口合并，减少同步调用接口耗时时间；</li>
 <li>前端页面数据按需加载，减少重复请求；</li>
-<li>删除前端无用的逻辑；</li>
-<li>开发包增加关键接口时间统计，方便分析耗时阻塞点；</li>
-<li>对加车进行防连击处理，防止触发多次请求。</li>
+<li>删除前端无用的逻辑，删除无用的复购信息、旧版促销信息；</li>
+<li>开发包增加关键接口时间统计，方便分析耗时阻塞点，添加加车接口、提交接口的时间统计方法；</li>
+<li>删除loading加载动画，对加车进行防连击处理，防止因删除loading动画在加车时触发多次请求，。</li>
 </ol>
-<h4 id="常见卡顿原因"><a href="#常见卡顿原因" class="headerlink" title="常见卡顿原因"></a>常见卡顿原因</h4><p>引起卡顿的原因有很多种，过度绘制，js执行逻辑耗时过久，动画卡顿。内存问题等等。</p>
+<h4 id="改造后移动POS前端购物车流程以及提交订单流程"><a href="#改造后移动POS前端购物车流程以及提交订单流程" class="headerlink" title="改造后移动POS前端购物车流程以及提交订单流程"></a>改造后移动POS前端购物车流程以及提交订单流程</h4><p><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1655436433801/5397ba70-e773-45dd-aa45-1aaafefb4b4f.png" alt="image.png"><br><img src="https://gjscrm-1256038144.cos.ap-beijing.myqcloud.com/common/1655436473742/41d15596-c502-4cd1-baf7-3e045f6c1d78.png" alt="image.png"></p>
+<h4 id="后期计划改造点"><a href="#后期计划改造点" class="headerlink" title="后期计划改造点"></a>后期计划改造点</h4><ul>
+<li>拆分促销，需要选择促销的时候，再进行网络请求后展示；</li>
+<li>对商品进行拆分，比如选择批号。</li>
+</ul>
+<h4 id="RN页面常见卡顿原因"><a href="#RN页面常见卡顿原因" class="headerlink" title="RN页面常见卡顿原因"></a>RN页面常见卡顿原因</h4><p>引起卡顿的原因有很多种，过度绘制，js执行逻辑耗时过久，动画卡顿。内存问题等等。</p>
 <ol>
-<li><p>开发模式</p>
+<li><p>开发模式<br>开发模式以及debug模式下，由于react需要监控各种日志性能，会有卡顿现象。</p>
 </li>
-<li><p>console.log语句， 在运行打好了离线包的应用时，控制台大量打印语句可能会拖累 JavaScript 线程。</p>
+<li><p>console.log语句， 在运行打好了离线包的应用时，控制台大量打印语句可能会拖累 JavaScript 线程。<br>正式包配置禁止console.log日志输出</p>
 </li>
 <li><p>使用动画改变图片的尺寸时，UI 线程掉帧<br>在 iOS 上，每次调整 Image 组件的宽度或者高度，都需要重新裁剪和缩放原始图片。这个操作开销会非常大，尤其是大的图片。比起直接修改尺寸，更好的方案是使用transform: [{scale}]的样式属性来改变尺寸。比如当你点击一个图片，要将它放大到全屏的时候，就可以使用这个属性。</p>
 </li>
@@ -121,13 +128,13 @@
 </li>
 </ol>
 <h4 id="rn性能优化列举"><a href="#rn性能优化列举" class="headerlink" title="rn性能优化列举"></a>rn性能优化列举</h4><ol>
-<li><p>首屏渲染问题</p>
+<li><p>首屏渲染问题<br>JSBundle拆包</p>
 </li>
 <li><p>图片问题<br>rn开发时本地图标为了统一往往放在js端，极端时（如一个页面加载几十上百张图片）可能会有性能问题。这是因为如果资源从 javascript 包中加载， RN 需要先从包中拿到资源，然后通过bridge把资源传送到 原生UI 层去渲染。而如果资源已经存在在原生端，那么 React 可以直接告知 UI 层去渲染具体的图片，无需通过这个bridge引入或者转入图片资源。 当然不会有这类问题，但是要js端图片要注意压缩，使其不太大，图片越大，性能问题越容易凸显。webP，jpg优先</p>
 </li>
 <li><p>缓存<br>各种需要的，有必要的缓存，如一个生日日期选择picker组件，数据源大概有100(年)x12(月)x30(天)这么多条数据，如果每次弹出picker都需要计算这些数据，还是会稍微有点延迟，这里可以缓存下来，甚至本地数据存储起来，以后拿出来直接使用</p>
 </li>
-<li><p>延迟加载<br>页面打开，优先执行那些跟页面展示有关的代码，其他的如埋点，上传状态，gif动画都可以稍后执行。对那些触摸响应事件后才需要展示的组件，或者根据接口返回才能决定是否展示的组件，一开始甚至都可以不用import，直到确定要展示时才局部import导入组件展示。对长列表页面，图片较多时，在页面范围之外的图片可以先不展示，直到滚动后发现图片在屏幕上面显示了再展示</p>
+<li><p>延迟加载<br>页面打开，优先执行那些跟页面展示有关的代码，其他的如埋点，上传状态，gif动画都可以稍后执行。对那些触摸响应事件后才需要展示的组件，或者根据接口返回才能决定是否展示的组件，一开始甚至都可以不用import，直到确定要展示时才局部import导入组件展示。对长列表页面，图片较多时，在页面范围之外的图片可以先不展示，直到滚动后发现图片在屏幕上面显示了再展示。<br>包括SectionList分组组件，如果加载网络数据时候，也会出现加载不全的问题，这个时候也可以利用延迟加载处理。</p>
 </li>
 <li><p>动画<br>普通动画如移动，缩放等直接使用LayoutAnimation，性能更好。复杂点的动画才使用Animated。对帧动画这种需要快速更新state触发动画的场景，可以使用setNativeProps直接修改原生属性（某些场合如背景动画，gif图片可能不是很好的选择，因为gif可能会很大，导致初次解压时出现明显卡顿现象，而且安卓上gif图片首轮显示效果不佳）。Animated： useNativeDriver为true，则会一次性将动画信息发送给原生端让原生去驱动动画，性能更佳。 否则js端会不断注册定时器事件，让原生端不断回调js方法更改组件的setNativeProps值产生动画，因为动画配置信息在每一帧都在原生和js端通信性能有所损耗。</p>
 </li>
@@ -135,7 +142,7 @@
 </li>
 <li><p>刷新问题<br>每次setState导致的render都会进行一次内存中diff计算，尽管diff效率很高(O(n))，但是还是应该避免不必要的diff。 Pure组件、自定义shouldComponentUpdate实现避免不必要的刷新<br>shouldComponentUpdate<br>多余提一句，在使用shouldComponentUpdate的时候，要谨慎使用。这个方法就是利用shouldComponentUpdate的消耗来换取render的消耗。<br>当某些小的、调用的次数少的component，就没有必要添加shouldComponentUpdate检查。<br>当组件够大，够复杂，可以考虑使用这个方法来减少re-render的消耗。当然，还是需要考虑用这个方法的消耗和diff&amp;render的消耗比起来哪个更划算。</p>
 </li>
-<li><p>预加载<br>对一些重要的，很可能会用到的内容预先加载，例如图片浏览器，当浏览某一张图片时可以预加载前后两张图片，优化用户体验。</p>
+<li><p>预加载<br>对一些重要的，很可能会用到的内容预先加载，例如图片浏览器，当浏览某一张图片时可以预加载前后两张图片，优化用户体验。<br>目前项目中包括多tab组件的页面。</p>
 </li>
 <li><p>FlatList或SectionList优化<br>Item组件使用PureComponent;<br>当使用component时，父组件的state或prop更新时，无论子组件的state、prop是否更新，都会触发子组件的更新，这会形成很多没必要的render，浪费很多性能；pureComponent的优点在于：pureComponent在shouldComponentUpdate只进行浅层的比较，只要外层对象没变化，就不会触发render,减少了不必要的render，当遇到复杂数据结构时，可以将一个组件拆分成多个pureComponent，以这种方式来实现复杂数据结构，以期达到节省不必要渲染的目的，如：表单、复杂列表、文本域等情况。</p>
 </li>
