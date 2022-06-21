@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin的几个常用关键字 | 前端日常开发记录</title>
+
+  
+
+  
+  <meta name="description" content="1. object 用于创建单例模式
+123object Resource &amp;#123;    val name &amp;#x3D; &amp;quot;Rocker&amp;quot;&amp;#125;
+2. lazy 、lateinit 用于延迟初始化，第一次使用时再实例化
+1234567891011val name: S">
+  
+
+  
+  
+  <meta name="keywords" content="kotlin">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Kotlin的几个常用关键字"/>
+
+  <meta property="og:site_name" content="前端日常开发记录"/>
+
+  
+  <meta property="og:image" content="/Blog/favicon.ico"/>
+  
+
+  <link href="/Blog/favicon.ico" rel="icon">
+  <link rel="alternate" href="/Blog/atom.xml" title="前端日常开发记录" type="application/atom+xml">
+  <link rel="stylesheet" href="/Blog/css/style.css" media="screen" type="text/css">
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/Blog/">前端日常开发记录</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Kotlin的几个常用关键字</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/Blog/2020/04/12/Kotlin的几个常用关键字/" rel="bookmark">
+        <time class="entry-date published" datetime="2020-04-12T15:46:25.000Z">
+          2020-04-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><strong>1. object 用于创建单例模式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">object Resource &#123;</span><br><span class="line">    val name &#x3D; &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. lazy 、lateinit 用于延迟初始化，第一次使用时再实例化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">val name: String by lazy &#123;</span><br><span class="line">    &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lateinit var name:String;</span><br><span class="line">fun testName()&#123;</span><br><span class="line">  name &#x3D; &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;两者区别：</span><br><span class="line">by lazy  修饰val的变量</span><br><span class="line">lateinit 修饰var的变量，且变量是非空的类型</span><br></pre></td></tr></table></figure>
+<p><strong>3. when 用于判断 相当于java中的switch()语句</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun getName(age: Int) &#x3D; when (age) &#123;</span><br><span class="line">        12 -&gt; &quot;jim&quot;</span><br><span class="line">        18 -&gt; &quot;lili&quot;</span><br><span class="line">        else -&gt; &quot;Rocker&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>4. let 默认当前这个对象作为闭包的it参数，返回值是函数里面最后一行</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun testLet()&#123;</span><br><span class="line">       &quot;Rocker&quot;.let &#123;</span><br><span class="line">           print(it)</span><br><span class="line">           print(it)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>5. apply 调用对象的apply函数，在函数范围内，可以任意调用该对象的任意方法，并返回该对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fun testApply()&#123;</span><br><span class="line">        mutableListOf&lt;String&gt;().apply &#123;</span><br><span class="line">            add(&quot;jim&quot;)</span><br><span class="line">            add(&quot;lili&quot;)</span><br><span class="line">            add(&quot;Rocker&quot;)</span><br><span class="line">        &#125;.add(&quot;To test whether returns this object&quot;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>6. with函数是一个单独的函数，返回是最后一行，可以直接调用对象的方法，感觉像是let和apply的结合。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun testWith()&#123;</span><br><span class="line">        with(mutableListOf&lt;String&gt;())&#123;</span><br><span class="line">            this.add(&quot;jim&quot;)</span><br><span class="line">            add(&quot;lili&quot;)</span><br><span class="line">            add(&quot;Rocker&quot;)</span><br><span class="line">            this</span><br><span class="line">        &#125;.add(&quot;To test whether returns this object&quot;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>7. open 与java 中的 final相反:它允许别的类继承这个类。默认情形下，kotlin 中所有的类都是 final ,用来表示他可以被继承。</strong><br>修饰类：表示可以被继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open class Base(p: Int)</span><br><span class="line"></span><br><span class="line">class Child(p: Int) : Base(p)</span><br></pre></td></tr></table></figure>
+<p>修饰成员 : 表示可以复写，在 kotlin 中坚持做明确的事</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">open class Base &#123;</span><br><span class="line">    open fun getName() &#123;&#125;</span><br><span class="line">    fun getAge() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Child() : Base() &#123;</span><br><span class="line">    override fun getName() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：abstract 抽象类或者方法默认是带着的open</p>
+</blockquote>
+<p><strong>8. companion object 伴随对象<br>在 kotlin 中不像 java ，它没有静态方法。在大多数情形下，建议只用包级别的函数。如果你要写一个没有实例类就可以调用的方法，但需要访问到类内部(比如说一个工厂方法)，你可以在你的类中声明一个伴随对象，这样你就可以像 java那样把它当做静态方法调用。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface TestCompanion &#123;</span><br><span class="line"></span><br><span class="line">    companion object &#123;</span><br><span class="line">        const val HOST &#x3D; &quot;http:&#x2F;&#x2F;www.baidu.com&quot;</span><br><span class="line">        const val VERSION &#x3D; &quot;1.0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>9. is 类型检测及自动类型转换<br>使用 is 运算符检测一个表达式是否某类型的一个实例(类似于Java中的instanceof关键字)。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  if (obj is String) &#123;</span><br><span class="line">    &#x2F;&#x2F; 做过类型判断以后，obj会被系统自动转换为String类型</span><br><span class="line">    return obj.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;在这里还有一种方法，与Java中instanceof不同，使用!is</span><br><span class="line">  &#x2F;&#x2F; if (obj !is String)&#123;</span><br><span class="line">  &#x2F;&#x2F;   &#x2F;&#x2F; XXX</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 这里的obj仍然是Any类型的引用</span><br><span class="line">  return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  if (obj !is String)</span><br><span class="line">    return null</span><br><span class="line">  &#x2F;&#x2F; 在这个分支中, &#96;obj&#96; 的类型会被自动转换为 &#96;String&#96;</span><br><span class="line">  return obj.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至还可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  &#x2F;&#x2F; 在 &#96;&amp;&amp;&#96; 运算符的右侧, &#96;obj&#96; 的类型会被自动转换为 &#96;String&#96;</span><br><span class="line">  if (obj is String &amp;&amp; obj.length &gt; 0)</span><br><span class="line">    return obj.length</span><br><span class="line">  return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/Blog/categories/移动端开发/">移动端开发</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/Blog/tags/kotlin/">kotlin</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2022 前端日常开发记录
+    
+  </p>
+</footer>
+    
+    
+  </div>
+</div>
+</body>
+</html>
