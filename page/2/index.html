@@ -1,629 +1,185 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>前端日常开发记录</title><meta name="author"><meta name="copyright"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="前端日常开发记录">
+<meta property="og:url" content="https://kuncho.github.io/page/2/index.html">
+<meta property="og:site_name" content="前端日常开发记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/Blog/img/favicon.png"><link rel="canonical" href="https://kuncho.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/Blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/Blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端日常开发记录',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-07-05 17:47:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <title>第 2 页 | 前端日常开发记录</title>
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-
-  
-
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  
-
-  <meta property="og:site_name" content="前端日常开发记录"/>
-
-  
-  <meta property="og:image" content="/Blog/favicon.ico"/>
-  
-
-  <link href="/Blog/favicon.ico" rel="icon">
-  <link rel="alternate" href="/Blog/atom.xml" title="前端日常开发记录" type="application/atom+xml">
-  <link rel="stylesheet" href="/Blog/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 5.2.0"></head>
-
-
-<body>
-<div class="blog">
-  <div class="content">
-
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/Blog/">前端日常开发记录</a>
-    </h1>
-    <p class="site-description"></p>
-  </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-  <article>
-
-  
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <h3 class="article-title"><a href="/Blog/2020/05/16/Context总结/"><span>Context 总结</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2020/05/16/Context总结/" rel="bookmark">
-        <time class="entry-date published" datetime="2020-05-16T15:46:25.000Z">
-          2020-05-16
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h3 id="Context是什么？"><a href="#Context是什么？" class="headerlink" title="Context是什么？"></a>Context是什么？</h3><p>Context 是 Android 中用的非常多的一种概念，常被翻译成上下文，这种概念在其他的技术中也有所使用。Android 官方对它的解释，可以理解为应用程序环境中全局信息的接口，它整合了许多系统级的服务，可以用来获取应用中的类、资源，以及可以进行应用程序级的调起操作，比如启动 Activity、Service等等，而且 Context 这个类是 abstract 的，不包含具体的函数实现。</p>
-<h3 id="Context的结构"><a href="#Context的结构" class="headerlink" title="Context的结构"></a>Context的结构</h3><p>Context 是维持 Android 程序中各组件能够正常工作的一个核心功能类。</p>
-<p>Context 本身是一个抽象类，其主要实现类为 ContextImpl，另外有直系子类两个：<br><code>ContextWrapper</code> <code>ContextThemeWrapper</code><br><img src="evernotecid://B825DE0A-5336-4F25-9E4F-D41D3D47DEB3/appyinxiangcom/5182838/ENResource/p318" alt="d4cf1f10d7847d4a30f346461efc866d.png"></p>
-<h5 id="ContextImpl类介绍"><a href="#ContextImpl类介绍" class="headerlink" title="ContextImpl类介绍"></a>ContextImpl类介绍</h5><p>ContextImpl 是 Context API 的常见实现，它为 Activity 和其他应用程序组件提供基本上下文对象，说的通俗一点就是 ContextImpl 实现了抽象类的方法，我们在使用 Context 的时候的方法就是它实现的。</p>
-<h5 id="ContextWrapper类介绍"><a href="#ContextWrapper类介绍" class="headerlink" title="ContextWrapper类介绍"></a>ContextWrapper类介绍</h5><p>ContextWrapper 类代理 Context 的实现，将其所有调用简单地委托给另一个 Context 对象（ContextImpl）,可以被分类为修饰行为而不更改原始 Context 的类，其实就 Context 类的修饰类。真正的实现类是 ContextImpl，ContextWrapper 里面的方法调用也是调用 ContextImpl 里面的方法。</p>
-<h5 id="ContextThemeWrapper"><a href="#ContextThemeWrapper" class="headerlink" title="ContextThemeWrapper"></a>ContextThemeWrapper</h5><p>就是一个带有主题的封装类，比 ContextWrapper 多了主题，它的一个直接子类就是 Activity。</p>
-<p>通过 Context 的继承关系图结合我们几个开发中比较熟悉的类，Activity、Service、Application，所以我们可以认为 Context 一共有三种类型，分别是 Application、Activity 和Service，他们分别承担不同的作用，但是都属于 Context，而他们具有 Context 的功能则是由ContextImpl 类实现的。</p>
-<h3 id="Context的数量"><a href="#Context的数量" class="headerlink" title="Context的数量"></a>Context的数量</h3><p>其实根据上面的 Context 类型我们就已经可以得出答案了。Context 一共有 Application、Activity 和 Service 三种类型，因此一个应用程序中 Context 数量的计算公式就可以这样写：</p>
-<blockquote>
-<p>Context数量 = Activity数量 + Service数量 + 1</p>
-</blockquote>
-<p>上面的1代表着 Application 的数量，因为一个应用程序中可以有多个 Activity 和多个 Service，但是只能有一个 Application。</p>
-<h3 id="Context的注意事项"><a href="#Context的注意事项" class="headerlink" title="Context的注意事项"></a>Context的注意事项</h3><p>Context 如果使用不恰当很容易引起内存泄露问题。</p>
-<p>最简单的例子比如说引用了 Context 的错误的单例模式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance;</span><br><span class="line">    private Context mContext;</span><br><span class="line"></span><br><span class="line">    private Singleton(Context context) &#123;</span><br><span class="line">        this.mContext &#x3D; context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Synchronized Singleton getInstance(Context context) &#123;</span><br><span class="line">        if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">            instance &#x3D; new Singleton(context);</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>上述代码中，我们使得了一个静态对象持有 Context 对象，而静态数据的生命一般是长于普通数据的，因此当 Context 被销毁（例如假设这里持有的是 Activity 的上下文对象，当 Activity 被销毁的时候），因为 instance 仍然持有 Context 的引用，导致 Context 虽然被销毁了但是却无法被GC机制回收，因为造成内存泄露问题。</p>
-<p>而一般因为Context所造成的内存泄漏，基本上都是 Context 已经被销毁后，却因为被引用导致GC回收失败。但是 Application 的 Context 对象却会随着当前进程而一直存在，所以使用 Context 是应该注意：</p>
-<ul>
-<li>当 Application 的 Context 能搞定的情况下，并且生命周期长的对象，优先使用 Application 的 Context。</li>
-<li>不要让生命周期长于 Activity 的对象持有到 Activity 的引用。</li>
-<li>尽量不要在 Activity 中使用非静态内部类，因为非静态内部类会隐式持有外部类实例的引用，如果使用静态内部类，将外部实例引用作为弱引用持有。</li>
-</ul>
-<h3 id="如何正确回复面试题"><a href="#如何正确回复面试题" class="headerlink" title="如何正确回复面试题"></a>如何正确回复面试题</h3><ol>
-<li>面试官：Android 中有哪些类型的 Context，它们有什么区别？</li>
-</ol>
-<p>应用有 Activity 、Service、Application 这些 Context 。<br>共同点：它们都是 ContextWrapper 的子类，而 ContextWrapper 的成员变量 mBase 可以用来存放系统实现的  ContextImpl，这样我们在调用如 Activity 的 Context 方法时，都是通过静态代理的方式最终调用到 ContextImpl 的方法。我们调用 ContextWrapper 的 getBaseContext 方法就能拿到 ContextImpl 的实例。</p>
-<p>不同点：它们有各自不同的生命周期；在功能上，只有  Activity 显示界面，正因为如此，Activity 继承的是 ContextThemeWrapper 提供一些关于主题，界面显示的能力，间接继承了 ContextWrapper ；而 Applicaiton 、Service 都是直接继承  ContextWrapper ，所以我们要记住一点，凡是跟 UI 有关的，都应该用 Activity 作为 Context 来处理，否则要么会报错，要么 UI 会使用系统默认的主题。<br>2. 面试官：一个APP应用里有几个 Context 呢？</p>
-<p>Context 一共有 Application 、Activity 和 Service 三种类型，因此一个应用程序中 Context 数量的计算公式就可以这样写：</p>
-<blockquote>
-<p>Context 数量 = Activity 数量 + Service 数量 + 1</p>
-</blockquote>
-<p>上面的1代表着 Application 的数量，因为一个应用程序中可以有多个Activity和多个 Service，但是只能有一个 Application。</p>
-<ol start="3">
-<li>面试官：Android 开发过程中，Context 有什么用？<br>Context 就相当于 Application 的大管家，主要负责：</li>
-</ol>
-<ul>
-<li>四大组件的交互，包括启动 Activity、Broadcast、Service，获取 ContentResolver 等。</li>
-<li>获取系统/应用资源，包括 AssetManager、PackageManager、Resources、System Service 以及 color、string、drawable 等。</li>
-<li>文件，包括获取缓存文件夹、删除文件、SharedPreference 相关等。</li>
-<li>数据库（SQLite）相关，包括打开数据库、删除数据库、获取数据库路径等。</li>
-</ul>
-<p>其它辅助功能，比如设置 ComponentCallbacks，即监听配置信息改变、内存不足等事件的发生。</p>
-<ol start="4">
-<li>面试官：ContextImpl 实例是什么时候生成的，在 Activity 的 onCreate 里能拿到这个实例吗？</li>
-</ol>
-<p>可以。我们开发的时候，经常会在 onCreate 里拿到 Application，如果用 getApplicationContext 取，最终调用的就是 ContextImpl 的 getApplicationContext 方法，如果调用的是 getApplication 方法，虽然没调用到 ContextImpl ，但是返回 Activity 的成员变量 mApplication 和 ContextImpl 的初始化时机是一样的。</p>
-<p>再说下它的原理，Activity 真正开始启动是从 ActivityThread.performLaunchActivity 开始的，这个方法做了这些事：</p>
-<ul>
-<li>通过 ClassLoader 去加载目标 Activity 的类，从而创建 对象。</li>
-<li>从 packageInfo 里获取 Application 对象。</li>
-<li>调用 createBaseContextForActivity 方法去创建 ContextImpl。</li>
-<li>调用 activity.attach ( contextImpl , application) 这个方法就把 Activity 和 Application 以及 ContextImpl 关联起来了，就是上面结论里说的时机一样。</li>
-<li>最后调用 activity.onCreate 生命周期回调。</li>
-</ul>
-<p>通过以上的分析，我们知道了 Activity 是先创建类，再初始化 Context ，最后调用 onCreate , 从而得出问题的答案。不仅 Activity 是这样， Application 、Service 里的 Context 初始化也都是这样的。</p>
-<ol start="5">
-<li>面试官：ContextImpl 、ContextWrapper、ContextThemeWrapper 有什么区别？</li>
-</ol>
-<ul>
-<li>ContextWrapper、ContextThemeWrapper 都是 Context 的代理类，二者的区别在于 ContextThemeWrapper 有自己的 Theme 以及 Resource，并且 Resource 可以传入自己的配置初始化。</li>
-<li>ContextImpl 是 Context 的主要实现类，Activity、Service 和 Application 的 Base Context 都是由它创建的，即 ContextWrapper 代理的就是 ContextImpl 对象本身。</li>
-<li>ContextImpl 和 ContextThemeWrapper 的主要区别是， ContextThemeWrapper 有 Configuration 对象，Resource 可以根据这个对象来初始化。</li>
-<li>Service 和 Application 使用同一个 Recource，和 Activity 使用的 Resource 不同。</li>
-</ul>
-<ol start="6">
-<li>Activity Context、Service Context、Application Context、Base Context 有什么区别？</li>
-</ol>
-<ul>
-<li>Activity、Service 和 Application 的 Base Context 都是由 ContextImpl 创建的，且创建的都是 ContextImpl 对象，即它们都是 ContextImpl 的代理类 。</li>
-<li>Service 和 Application 使用同一个 Recource，和 Activity 使用的 Resource 不同。</li>
-<li>getApplicationContext 返回的就是 Application 对象本身，一般情况下它对应的是应用本身的 Application 对象，但也可能是系统的某个 Application。</li>
-</ul>
-<ol start="7">
-<li>面试官：为什么不推荐使用 BaseContext？</li>
-</ol>
-<ul>
-<li>对于 Service 和 Application 而言，不推荐使用 Base Context，是担心用户修改了 Base Context 而导致错误的发生。</li>
-<li>对于  Activity 而言，除了担心用户的修改之外，Base Context 和 Activity 本身对于 Reource 以及 Theme  的相关行为是不同的（如果应用了 Configuration 的话），使用 Base Context 可能出现无法预期的现象。</li>
-</ul>
-<ol start="8">
-<li>面试官：ContentProvider 里的 Context 是什么时候初始化的呢？<br>ContentProvider 本身不是 Context ，但是它有一个成员变量  mContext ，是通过构造函数传入的。那么这个问题就变成了，ContentProvider 什么时候创建。应用创建 Application  是通过调用 ActivityThread.handleBindApplication 方法，这个方法的相关流程有：</li>
-</ol>
-<ul>
-<li>创建 Application</li>
-<li>初始化 Application 的 Context</li>
-<li>调用 installContentProviders 并传入刚创建好的 Application 来创建 ContentProvider</li>
-<li>调用 Application.onCreate</li>
-</ul>
-<p>得出结论，ContentProvider 的 Context 是在 Applicaiton 创建之后，但是 onCreate 方法调用之前初始化的。</p>
-<ol start="9">
-<li>面试官：BroadcastReceiver 里的 Context是哪来的?<br>广播接收器，分动态注册和静态注册。</li>
-</ol>
-<ul>
-<li><strong>动态注册很简单</strong>，在调用  Context.registerReceiver 动态注册 BroadcastReceiver 时，会生成一个  ReceiverDispatcher 会持有这个 Context ，这样当有广播分发到它时，调用 onReceiver 方法就可以把  Context 传递过去了。当然，这也是为什么不用的时候要 unregisterReceiver 取消注册，不然这个 Context  就泄漏了哦。</li>
-<li><strong>静态注册时</strong>，在分发的时候最终调用的是 ActivityThread.handleReceiver  ，这个方法直接通过 ClassLoader 去创建一个 BroadcastReceiver 的对象，而传递给 onReceiver 方法的  Context 则是通过 context.getReceiverRestrictedContext() 生成的一个以 Application 为  mBase 的 ContextWrapper。注意这边的 Context 不是 Application 。</li>
-</ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/Blog/categories/移动端开发/">移动端开发</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/Blog/tags/Android/">Android</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/Blog/2020/04/12/Kotlin的几个常用关键字/"><span>Kotlin的几个常用关键字</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2020/04/12/Kotlin的几个常用关键字/" rel="bookmark">
-        <time class="entry-date published" datetime="2020-04-12T15:46:25.000Z">
-          2020-04-12
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p><strong>1. object 用于创建单例模式</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">object Resource &#123;</span><br><span class="line">    val name &#x3D; &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2. lazy 、lateinit 用于延迟初始化，第一次使用时再实例化</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">val name: String by lazy &#123;</span><br><span class="line">    &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lateinit var name:String;</span><br><span class="line">fun testName()&#123;</span><br><span class="line">  name &#x3D; &quot;Rocker&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;两者区别：</span><br><span class="line">by lazy  修饰val的变量</span><br><span class="line">lateinit 修饰var的变量，且变量是非空的类型</span><br></pre></td></tr></table></figure>
-<p><strong>3. when 用于判断 相当于java中的switch()语句</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun getName(age: Int) &#x3D; when (age) &#123;</span><br><span class="line">        12 -&gt; &quot;jim&quot;</span><br><span class="line">        18 -&gt; &quot;lili&quot;</span><br><span class="line">        else -&gt; &quot;Rocker&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>4. let 默认当前这个对象作为闭包的it参数，返回值是函数里面最后一行</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun testLet()&#123;</span><br><span class="line">       &quot;Rocker&quot;.let &#123;</span><br><span class="line">           print(it)</span><br><span class="line">           print(it)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>5. apply 调用对象的apply函数，在函数范围内，可以任意调用该对象的任意方法，并返回该对象</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fun testApply()&#123;</span><br><span class="line">        mutableListOf&lt;String&gt;().apply &#123;</span><br><span class="line">            add(&quot;jim&quot;)</span><br><span class="line">            add(&quot;lili&quot;)</span><br><span class="line">            add(&quot;Rocker&quot;)</span><br><span class="line">        &#125;.add(&quot;To test whether returns this object&quot;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>6. with函数是一个单独的函数，返回是最后一行，可以直接调用对象的方法，感觉像是let和apply的结合。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun testWith()&#123;</span><br><span class="line">        with(mutableListOf&lt;String&gt;())&#123;</span><br><span class="line">            this.add(&quot;jim&quot;)</span><br><span class="line">            add(&quot;lili&quot;)</span><br><span class="line">            add(&quot;Rocker&quot;)</span><br><span class="line">            this</span><br><span class="line">        &#125;.add(&quot;To test whether returns this object&quot;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>7. open 与java 中的 final相反:它允许别的类继承这个类。默认情形下，kotlin 中所有的类都是 final ,用来表示他可以被继承。</strong><br>修饰类：表示可以被继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open class Base(p: Int)</span><br><span class="line"></span><br><span class="line">class Child(p: Int) : Base(p)</span><br></pre></td></tr></table></figure>
-<p>修饰成员 : 表示可以复写，在 kotlin 中坚持做明确的事</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">open class Base &#123;</span><br><span class="line">    open fun getName() &#123;&#125;</span><br><span class="line">    fun getAge() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Child() : Base() &#123;</span><br><span class="line">    override fun getName() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：abstract 抽象类或者方法默认是带着的open</p>
-</blockquote>
-<p><strong>8. companion object 伴随对象<br>在 kotlin 中不像 java ，它没有静态方法。在大多数情形下，建议只用包级别的函数。如果你要写一个没有实例类就可以调用的方法，但需要访问到类内部(比如说一个工厂方法)，你可以在你的类中声明一个伴随对象，这样你就可以像 java那样把它当做静态方法调用。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface TestCompanion &#123;</span><br><span class="line"></span><br><span class="line">    companion object &#123;</span><br><span class="line">        const val HOST &#x3D; &quot;http:&#x2F;&#x2F;www.baidu.com&quot;</span><br><span class="line">        const val VERSION &#x3D; &quot;1.0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>9. is 类型检测及自动类型转换<br>使用 is 运算符检测一个表达式是否某类型的一个实例(类似于Java中的instanceof关键字)。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  if (obj is String) &#123;</span><br><span class="line">    &#x2F;&#x2F; 做过类型判断以后，obj会被系统自动转换为String类型</span><br><span class="line">    return obj.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;在这里还有一种方法，与Java中instanceof不同，使用!is</span><br><span class="line">  &#x2F;&#x2F; if (obj !is String)&#123;</span><br><span class="line">  &#x2F;&#x2F;   &#x2F;&#x2F; XXX</span><br><span class="line">  &#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 这里的obj仍然是Any类型的引用</span><br><span class="line">  return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  if (obj !is String)</span><br><span class="line">    return null</span><br><span class="line">  &#x2F;&#x2F; 在这个分支中, &#96;obj&#96; 的类型会被自动转换为 &#96;String&#96;</span><br><span class="line">  return obj.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>甚至还可以</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">  &#x2F;&#x2F; 在 &#96;&amp;&amp;&#96; 运算符的右侧, &#96;obj&#96; 的类型会被自动转换为 &#96;String&#96;</span><br><span class="line">  if (obj is String &amp;&amp; obj.length &gt; 0)</span><br><span class="line">    return obj.length</span><br><span class="line">  return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/Blog/categories/移动端开发/">移动端开发</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/Blog/tags/kotlin/">kotlin</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/Blog/2020/03/06/Android 事件分发机制的设计与实现/"><span>Android 事件分发机制的设计与实现</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2020/03/06/Android 事件分发机制的设计与实现/" rel="bookmark">
-        <time class="entry-date published" datetime="2020-03-06T15:46:25.000Z">
-          2020-03-06
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p>完整的掌握 Android 事件分发体系并非易事，其整个流程涉及到了 <strong>系统启动流程（SystemServer）</strong>、<strong>输入管理(InputManager)**、</strong>系统服务和UI的通信（ViewRootImpl + Window + WindowManagerService）<strong>、</strong>View层级**的 事件分发机制 等等一系列的环节。</p>
-<p>事件拦截机制 是基于View层级 事件分发机制 的一个进阶性的知识点，本文将对其进行更细致化的讲解。<br>事件拦截机制 本身就相对比较独立，因此本文不需要读者有 事件分发机制 相关的预备知识，对后者感兴趣的读者可以参考以下资料：</p>
-<p>反思 | Android 事件分发机制的设计与实现</p>
-<h3 id="从事件序列说起"><a href="#从事件序列说起" class="headerlink" title="从事件序列说起"></a>从事件序列说起</h3><ol>
-<li>什么是事件序列<br>想要说清 事件分发机制 和 事件拦截机制，事件序列 是首先要理解的概念。<br>什么是事件序列？Google官方文档中对其描述为 <strong>The duration of the touch</strong>，顾名思义，我们可以将其理解为 用户一次完整的触摸操作流程—— 举例来说，用户单击按钮、用户滑动屏幕、用户长按屏幕中某个UI元素等等，都属于该范畴。</li>
-<li>缘由<br>为什么 事件序列 是一个非常重要的概念？<br>事件分发的本质原理就是递归，对此简单的实现方式是：每接收一个新的事件，都需要进行一次递归才能找到对应消费事件的View，并依次向上返回事件分发的结果。</li>
-</ol>
-<p>以每个触摸事件作为最基本的单元，都对View树进行一次遍历递归？这对性能的影响显而易见，因此这种设计是有改进空间的。</p>
-<p>如何针对这个问题进行改进？将事件序列作为最基本的单元进行处理则更为合适。</p>
-<p>首先，设计者根据用户的行为对MotionEvent中添加了一个Action的属性以描述该事件的行为：</p>
-<ul>
-<li>ACTION_DOWN：手指触摸到屏幕的行为</li>
-<li>ACTION_MOVE：手指在屏幕上移动的行为</li>
-<li>ACTION_UP：手指离开屏幕的行为</li>
-<li>…其它Action，比如ACTION_CANCEL…</li>
-</ul>
-<p>我们知道，针对用户的一次触摸操作，必然对应了一个<strong>事件序列</strong>，从用户手指接触屏幕，到移动手指，再到抬起手指 ——单个事件序列必然包含ACTION_DOWN、ACTION_MOVE … ACTION_MOVE、ACTION_UP 等多个事件，这其中ACTION_MOVE的数量不确定，ACTION_DOWN和ACTION_UP的数量则为1。</p>
-<p>熟悉了<strong>事件序列</strong>的概念，设计者就可以着手对现有代码进行设计和改进，其思路如下：当接收到一个ACTION_DOWN时，意味着一次完整事件序列的开始，通过递归遍历找到真正对事件进行消费的Child，并将其进行保存，这之后接收到ACTION_MOVE和ACTION_UP行为时，则跳过遍历递归的过程，将事件直接分发对应的消费者：</p>
-<p>由此可见，<strong>事件序列</strong>在<strong>事件分发</strong>的知识体系中的确是非常重要的核心概念（甚至没有之一），其最重要的意义是 足够节省性能：用户一次正常的触摸行为，其<strong>事件序列</strong>包含了若干个触摸事件，这些事件并非每次都通过递归算法去找到事件的消费者，因为这会消耗非常多的内存——当事件序列越复杂、或者View树的层级嵌套越深，这种优势愈发明显。<br>那么，源码的设计者是如何保证通过一次递归算法找到View树中对应事件消费者的子View，其数据结构又是如何的呢？<br>认真思考，读者不难得出答案：链表。</p>
-<h5 id="为什么是链表"><a href="#为什么是链表" class="headerlink" title="为什么是链表"></a>为什么是链表</h5><p>为什么采用链表，有没有更加简单粗暴的实现方案？<br>当然，最符合直觉 的实现方式似乎是：在通过递归完成第一次事件分发之后，将事件的消费者作为成员保存在当前父View中：</p>
-<p>不可否认，这样的设计完全可以实现我们需要的效果，但读者仔细思考得知，这种设计最大的问题就是破坏了树形结构的 内部自治性。</p>
-<p>最顶层View直接持有最下层某个View的引用合理吗？答案是否定的。首先，这导致View层级依赖之间的混乱；其次，顶层View本身持有了最下层某个View的引用，则这之间若干个层级的View的target属性都毫无意义。<br>更能将树结构应用淋漓尽致的方式是构建一个链表：</p>
-<p>每个View节点都持有事件的下一级消费者，当同一事件序列后续的触摸事件抵达时，不再需要进行消耗性能的DFS算法，而是直接交给下一级的子View，子View则直接交给下下一级的子View，直到事件到达真正的消费者：</p>
-<p>和链表的定义类似，设计者设计了TouchTarget类，同时为每一个ViewGroup都声明这样一个成员，作为链表的一个结点，以描述当前事件序列的传递方向：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ViewGroup extends View &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 链表的下一级结点</span><br><span class="line">  private TouchTarget mFirstTouchTarget;</span><br><span class="line"></span><br><span class="line">  private static final class TouchTarget &#123;</span><br><span class="line">      &#x2F;&#x2F; 描述接下来的触摸事件由哪一个子View接收并分发</span><br><span class="line">      public View child;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么这个链表是怎么构建的呢？正如上文所说，当接收到一个ACTION_DOWN时，意味着一次完整事件序列的开始，通过递归遍历找到真正对事件进行消费的Child<br>读者需认真揣摩 事件序列 的相关概念，因为这个知识点贯穿了整个 事件分发机制 流程，可以说是非常核心的知识点；同时，掌握它也是下文快速掌握 事件拦截机制 的关键。</p>
-<h5 id="事件拦截机制"><a href="#事件拦截机制" class="headerlink" title="事件拦截机制"></a>事件拦截机制</h5><p>大多数Android开发者对 事件拦截机制 都不会陌生，读者应该都有了解，ViewGroup层级额外设计了onInterceptTouchEvent()函数并向外暴露给开发者，以达到让ViewGroup不再将触摸事件交给View处理，而是自身决定是否消费事件，并将结果反馈给上层级的ViewGroup。</p>
-<ol>
-<li>缘由<br>为什么设计出这样一种拦截机制？其实这是有必要的，以常规的ScrollView对应的滑动页面为例，当用户抛出了一个列表的滑动操作，这时，对应的触摸事件序列是否还有必要交给ScrollView的子View进行处理？<br>答案是否定的，当ScrollView接收到滑动操作时，理所当然，本次滑动操作相关事件都不再需要交给子View，而是直接交给ScrollView去处理滑动操作。<br>读者同样需要明白，并非所有事件序列都会被拦截——当用户点击ScrollView中的某个按钮时，设计者又期望这次的点击操对应的系列事件能够被ScrollView分发给子Button去处理，这样开发者最终能够在按钮本身的OnClickListener中观察到这次点击事件，并进行对应的业务操作。<br>因此，对于不同类型的ViewGroup，开发者需要在不同的场景下，做出是否拦截事件的决定，这种 父控件根据本身职责去拦截指定场景的事件序列 的行为，我们称之为 事件拦截机制。</li>
-<li>拦截函数：onInterceptTouchEvent()<br>那么开发者如何做，才能保证  不同场景的事件被合理的向下分发或直接拦截 呢？设计者据此提供了 onInterceptTouchEvent() 拦截函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ViewGroup extends View &#123;</span><br><span class="line"></span><br><span class="line">  public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">      &#x2F;&#x2F; ...</span><br><span class="line">      return false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-其定义是，当触摸事件到来时，事件首先作为参数传入onInterceptTouchEvent函数中，开发者自定义onInterceptTouchEvent内部逻辑，以决定是否对该事件进行拦截，并将boolean类型的结果进行返回。当返回值为true时，该事件序列接下来所有的事件都会被当前的ViewGroup拦截；通常情况下，ViewGroup的该函数默认返回false，即不对事件进行拦截。<br>以上文为例，我们可以对ScrollView添加类似如下策略——当用户发起一个 点击事件 的操作时，onInterceptTouchEvent返回false，将事件交给下游的子控件去决定消费与否；而当用户 滑动屏幕 时，则将事件序列进行拦截：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class ScrollView extends ViewGroup &#123;</span><br><span class="line"></span><br><span class="line">  public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">      &#x2F;&#x2F; 这里模拟一个抽象的函数代替实际的业务逻辑</span><br><span class="line">      &#x2F;&#x2F; 实际源码中，这里是根据对触摸事件序列的复杂判断，得出操作是否是滑动事件</span><br><span class="line">      if (isUserScrollAction(ev)) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-事件序列 在这个过程中再次起到了 至关重要 的作用。针对单独一个触摸事件——例如 ACTION_DOWN或ACTION_MOVE而言，我们都无法确定这是否是我们希望拦截的操作。而当我们获取到 事件序列 中连续若干个事件后，我们则可以根据手势操作的方向和距离（判断是否是滑动）、触摸屏幕的时间（判断是点击事件还是长按事件）对用户的这次行为进行定义，最终决定是否进行拦截。</li>
-</ol>
-<p>——这意味着，当ScrollView接收到最初的ACTION_DOWN事件时，父控件并没有立即对事件进行拦截，而是交给了子Button去消费；而当接收了若干个ACTION_MOVE事件时，ScrollView的onInterceptTouchEvent()函数中判断得出 本次触摸行为方向朝下，是滑动事件，然后该函数返回true，导致本次和接下来的触摸事件都会被拦截。<br>等等！到了这里，读者似乎推断出了一个怪异的结论： 针对一个完整事件序列的向下分发过程而言，触摸事件的消费者并不一定只有一个角色——这似乎不太符合直觉。<br>但事实的确如此。<br>既然一个完整的 事件序列 其事件可能会交给不同的角色，这是否意味着极端情况下，用户的一次 滑动行为 不但会触发了父控件本身的 滑动 效果，用户也会同时接收到Button子控件的 点击 效果？<br>目前为止的设计中确实存在这个缺陷，因此接下来我们需要增加新的逻辑单元去弥补这个问题，ACTION_CANCEL闪亮登场。</p>
-<ol start="3">
-<li>ACTION_CANCEL：弥补与终结</li>
-</ol>
-<p>终于来到了ACTION_CANCEL的舞台，报幕员对这名演员的介绍是两个单词：弥补 和 终结。<br>现在我们希望，当Button的父控件ScrollView对滑动操作进行了拦截时，Button的点击事件不再会被响应。<br>正常的逻辑处理中，Button需要在接收到ACTION_UP时，判断整个事件序列持续的时间，如果符合一系列单击操作的前置定义（比如touchable = true或clickable = true等等），就直接交给单击事件的监听器View.OnClickListener去处理。<br>我们可以将ACTION_UP视为 事件序列 中的 终止事件，但很明显，这个逻辑在 事件拦截机制 中并不适用，因为当父控件对事件进行了拦截后，接下来整个序列中所有的事件都转交给了父控件，子控件再也接受不到任何事件，包括ACTION_UP。<br>我们总是希望有始有终（比如期待面试结果的及时反馈），事件分发机制 中也是一样，当子控件事件被父控件拦截，子控件也需要一个 终止事件 的通知以作出对应的行为。<br>因此，设计者额外提供了ACTION_CANCEL事件，以通知当前的View作出对 事件被拦截 之后的收尾工作，比如取消点击事件或长按事件相关判断逻辑中的计时器（如果有的话，下同），或者对当前控件滑动距离计算的重置等等，避免了「既发生父控件滑动」又「触发子控件点击」的尴尬场景。<br>现在，当父控件拦截了触摸事件后，子控件立即接收到一个额外的ACTION_CANCEL作为弥补，并草草进行了相关的收尾工作，之后的业务逻辑则统统交给了父控件去处理。<br>事件拦截机制 到此似乎告一段落，读者认真思考，这样的逻辑处理目前已经是完美的了么？</p>
-<h5 id="拦截机制与反拦截机制"><a href="#拦截机制与反拦截机制" class="headerlink" title="拦截机制与反拦截机制"></a>拦截机制与反拦截机制</h5><blockquote>
-<p>父控件:「我无效你的效果。」<br>子控件:「我无效你的无效。」</p>
-</blockquote>
-<ol>
-<li><p>压迫与抗争<br>音乐播放器的进度条控件SeekBar提出了严重抗议。<br>当SeekBar与ScrollView搭配使用时，前者愕然发现，作为子控件，其最引以为豪的技能——滑动调整音频进度的功能完全被废掉了。<br>这是当然的，ScrollView接收到滑动事件时，会很自然的将接下来相关的所有事件都进行拦截，而作为子控件的SeekBar连汤都喝不上。<br>这是不合理的设计，父控件的权利实在太大了，而子控件对此完全束手无策。因此设计者为ViewGroup设计了一个另外一个API——requestDisallowInterceptTouchEvent(boolean)。<br>该函数的作用是，命令指定的ViewGroup 是否 不再针对事件序列进行拦截 ，而是正常将事件交给子控件去处理是否消费事件。<br>以SeekBar为例，其完全可以这样设计：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbsSeekBar extends ProgressBar &#123;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; ...代码大幅简化，具体逻辑请参考源码...</span><br><span class="line">   @Override</span><br><span class="line">   public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        switch (event.getAction()) &#123;</span><br><span class="line">          &#x2F;&#x2F; 当接收到ACTION_DOWN事件时，命令父控件不能拦截事件序列</span><br><span class="line">          case MotionEvent.ACTION_DOWN:</span><br><span class="line">              mParent.requestDisallowInterceptTouchEvent(true);</span><br><span class="line">              break;</span><br><span class="line">          &#x2F;&#x2F; ...</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在，即使ScrollView内部持有对 滑动操作 相关的拦截机制，但SeekBar依然可以通过更高等级的API对其进行压制，从而跳过父控件相关的拦截，并自己消费滑动事件——最终用户得到了他希望得到的操作体验（滑动调节播放进度）。</p>
-</li>
-<li><p>更深入性思考</p>
-</li>
-</ol>
-<p>上一小节的叙述本身是存在瑕疵的，通常来说，调节进度的SeekBar处理的是横向滑动，而ScrollView处理的则是竖向滑动，本质上两者逻辑并不冲突。<br>这样描述，只是为了让读者能够更容易的理解 反拦截机制 对应的requestDisallowInterceptTouchEvent()函数设计的目的及意义，对此读者不必深究——当然，读者也可自定义实现一个横向滑动的HorizontalScrollView，以得到上一小节中滑动冲突的效果，本文不赘述。<br>另外一点需要思考的是，当子控件调用了父控件的requestDisallowInterceptTouchEvent(true)函数无效化了父控件的拦截机制之后，父控件拦截机制的无效化需要一直存在吗 ？<br>答案是否定的，正确的方式是应该在某个时间点 对父控件拦截机制进行重启——即调用requestDisallowInterceptTouchEvent(false)，这样才能保证在触摸到其它子控件时，父控件依然能够对 事件拦截机制 进行正常的运转。<br>那么这个重置的时间点如何把握，在子控件接收到ACTION_UP时调用吗？<br>在子控件 事件序列的终止事件中重置状态，这听起来不错，但是需要注意的是，拦截机制被无效化的状态是存在父控件ViewGroup中的，因此换个思路，更好的时机会不会其实是隐藏在ViewGroup中的呢？</p>
-<ol start="3">
-<li>更好的时机<br>设计者最终将重置的时机放在了父控件 事件序列的起始事件——ACTION_DOWN的处理逻辑中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ViewGroup extends View &#123;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">      &#x2F;&#x2F; ...</span><br><span class="line">      if (actionMasked &#x3D;&#x3D; MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">         &#x2F;&#x2F; 1.这个函数内部将事件拦截功能的开关进行了重置</span><br><span class="line">         resetTouchState();</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F; ...2.继续处理事件拦截和事件分发</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-这确实是重置拦截机制的更好时机，既保证了其它子控件的触摸事件不会被之前的反拦截机制所影响，同时也维护了ViewGroup内部本身的自治性。<br>这也证明了 事件序列 中的起始事件 ACTION_DOWN 总是可以被父控件接收到并进行拦截处理，因此，开发者绝大多数情况下不能在 ViewGroup 的 onInterceptTouchEvent() 中，直接对ACTION_DOWN事件返回true，因为这将会导致父控件拦截了整个 事件序列 ，子控件连ACTION_DOWN都接受不到，反拦截机制彻底失效。<br>总结<br>事件拦截机制 是一个非常重要的基础知识点，而 事件序列 又是其中最核心的概念，无论是 事件分发 还是 事件拦截，搞懂了 事件序列 的意义，其它逻辑概念的理解都不再困难。<br>参考 &amp; 额外的话</li>
-</ol>
-<p>这一篇文章就能让我理解Android事件拦截机制吗？</p>
-<p>当然不能，在撰写本文的过程中，笔者最终删除了若干更细节知识点的讲解，比如:</p>
-<p>父控件拦截了事件后，其内部的mFirstTouchTarget发生了怎样的变化？（事件传递链表的更新操作）<br>事件的拦截机制常常用于解决开发中的哪些问题？(解决滑动冲突)</p>
-<p>等等，这些细节同样十分重要，它们是填充 事件拦截机制 完整体系的血与肉，建议读者结合本文与下列相关资料，开启一次更细致的探究之旅。</p>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/Blog/categories/移动端开发/">移动端开发</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/Blog/tags/Android/">Android</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/Blog/2020/02/12/React class & function component 的区别/"><span>function和class component</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2020/02/12/React class & function component 的区别/" rel="bookmark">
-        <time class="entry-date published" datetime="2020-02-12T15:46:25.000Z">
-          2020-02-12
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h3 id="function和class-component"><a href="#function和class-component" class="headerlink" title="function和class component"></a>function和class component</h3><p>首先看下function component：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Welcome(props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它就是一个函数接受一个props参数返回了一个jsx语法的标签，接下来看下class 语法的component</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两个component是等效的。</p>
-<h3 id="function和class-component-的区别"><a href="#function和class-component-的区别" class="headerlink" title="function和class component 的区别"></a>function和class component 的区别</h3><p>1.syntax 语法：functional component语法更简单，只需要传入一个props参数，返回一个react片段。class component 要求先继承React.Component然后常见一个render方法，在render里面返回react片段。</p>
-<p>2.state 状态：因为function component 知识一个普通的函数所以不可以在其中用this.state , setState(),这也是它被叫做无状态组件的原因。所以一个组件需要用到状态的时候要用到class component。</p>
-<p>3.lifecycle hooks 生命周期：function component 不具有生命周期，因为所有的生命周期钩子函数均来自于React.Component。所以当一个组件需要生命周期钩子的时候我们也需要class component。</p>
-<h3 id="为什么要用function-component？"><a href="#为什么要用function-component？" class="headerlink" title="为什么要用function component？"></a>为什么要用function component？</h3><p>function component和class component 比起来缺少那么多功能为什么还要用function componet。<br>1.function component更易于编写阅读和测试<br>2.代码量更少，上手容易<br>3.因为没有状态，可以更好的实现容器和表现的分离，可以只负责表现层的逻辑，不用考虑因为复杂的逻辑去改变状态从而带来的麻烦，有利于代码复用。<br>4.react团队提倡使用</p>
-<h3 id="为什么要用class-component？"><a href="#为什么要用class-component？" class="headerlink" title="为什么要用class component？"></a>为什么要用class component？</h3><p>1.虽然function component 有很多好处，但是有些时候class component 还是不可替代的。<br>2.当需要实现一些容器组件的时候，需要改变内部状态来实现自组件的改变的时候。<br>3.当需要用到生命周期钩子函数实现一些功能的时候<br>4.当我们需要提升性能时，性能是一个很重要的问题，有些时候我们需要减少组件的渲染次数，我们就需要在组件内部用shouldComponentUpdate 方法来去判断，或者继承React.PureComponent 类（自动调用shouldComponentUpdate）来实现state和props的浅比较进行判断组件是否重新渲染。</p>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/Blog/categories/前端开发/">前端开发</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/Blog/tags/react/">react</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/Blog/2019/06/22/CSS中margin和padding的用法/"><span>CSS中margin和padding的用法</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2019/06/22/CSS中margin和padding的用法/" rel="bookmark">
-        <time class="entry-date published" datetime="2019-06-22T15:46:25.000Z">
-          2019-06-22
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p>CSS中，margin外间距分别一个值、两个值、三个值、四个值代码的意思：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">margin:10px;&#x2F;&#x2F;上、右、下、左</span><br><span class="line">margin:10px 5px;&#x2F;&#x2F;上下：10px,右左：5px</span><br><span class="line">margin:10px 5px 15px;&#x2F;&#x2F;上10px、右和左5px、下15px</span><br><span class="line">margin:10px 5px 15px 20px;&#x2F;&#x2F;上10px、右5px、下15px、左20px</span><br></pre></td></tr></table></figure>
-
-<p>CSS中，padding内间距分别一个值、两个值、三个值、四个值代码的意思：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">padding:10px;&#x2F;&#x2F;上、右、下、左</span><br><span class="line">padding:10px 5px;&#x2F;&#x2F;上下：10px,右左：5px</span><br><span class="line">padding:10px 5px 15px;&#x2F;&#x2F;上10px、右和左5px、下15px</span><br><span class="line">padding:10px 5px 15px 20px;&#x2F;&#x2F;上10px、右5px、下15px、左20px</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/Blog/categories/前端开发/">前端开发</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/Blog/tags/CSS/">CSS</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/Blog/2019/01/06/hello-world/"><span>使用方法</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/Blog/2019/01/06/hello-world/" rel="bookmark">
-        <time class="entry-date published" datetime="2019-01-06T15:46:25.000Z">
-          2019-01-06
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="部署流程：将写好的-md文件放置到source-posts文件夹中，在项目根目录下依次执行以下命令："><a href="#部署流程：将写好的-md文件放置到source-posts文件夹中，在项目根目录下依次执行以下命令：" class="headerlink" title="部署流程：将写好的.md文件放置到source/_posts文件夹中，在项目根目录下依次执行以下命令："></a>部署流程：将写好的.md文件放置到source/_posts文件夹中，在项目根目录下依次执行以下命令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>或者直接执行:</p>
-<pre><code class="hexo">hexo d```
-</code></pre>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-
-<nav class="pagination">
-  
-  <a href="/Blog/" class="pagination-prev">上一页</a>
-  
-  
-</nav>
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
-    
-    &copy; 2022 前端日常开发记录
-    
-  </p>
-</footer>
-    
-    
-  </div>
-</div>
-</body>
-</html>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/Blog/">前端日常开发记录</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">前端日常开发记录</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/Blog/2020/07/13/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9%E8%BD%AC%E6%8D%A2%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" title="McImage资源压缩转换插件的使用"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="McImage资源压缩转换插件的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2020/07/13/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9%E8%BD%AC%E6%8D%A2%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" title="McImage资源压缩转换插件的使用">McImage资源压缩转换插件的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-13T12:46:25.000Z" title="发表于 2020-07-13 20:46:25">2020-07-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">移动端开发</a></span></div><div class="content">McImage插件使用在项目根目录中添加资源压缩转换软件文件夹:mctools,目前三种系统都有对应的转换工具，对应Linux、Mac、Windows系统，在项目根目录的gradle文件中添加依赖classpath &#39;com.smallsoho.mobcase:McImage:1.5.1&#39;在相应的module下的gradle文件中使用插件（目前只在app module中添加了该插件）：apply plugin: &#39;McImage&#39;还可以设置下面的额外配置：
+12345678910111213141516McImageConfig &#123;    isCheckSize true &#x2F;&#x2F;是否检测图片大小，默认为true    optimizeType &quot;ConvertWebp&quot; &#x2F;&#x2F;优化类型，可选&quot;ConvertWebp&quot;，&quot;Compress&quot;，转换为webp或原图压缩，默认Compress，使用ConvertWep需要min sdk &gt;&#x3D; ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Blog/2020/05/16/Context%E6%80%BB%E7%BB%93/" title="Context 总结"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="Context 总结"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2020/05/16/Context%E6%80%BB%E7%BB%93/" title="Context 总结">Context 总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-16T15:46:25.000Z" title="发表于 2020-05-16 23:46:25">2020-05-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">移动端开发</a></span></div><div class="content">Context是什么？Context 是 Android 中用的非常多的一种概念，常被翻译成上下文，这种概念在其他的技术中也有所使用。Android 官方对它的解释，可以理解为应用程序环境中全局信息的接口，它整合了许多系统级的服务，可以用来获取应用中的类、资源，以及可以进行应用程序级的调起操作，比如启动 Activity、Service等等，而且 Context 这个类是 abstract 的，不包含具体的函数实现。
+Context的结构Context 是维持 Android 程序中各组件能够正常工作的一个核心功能类。
+Context 本身是一个抽象类，其主要实现类为 ContextImpl，另外有直系子类两个：ContextWrapper ContextThemeWrapper
+ContextImpl类介绍ContextImpl 是 Context API 的常见实现，它为 Activity 和其他应用程序组件提供基本上下文对象，说的通俗一点就是 ContextImpl 实现了抽象类的方法，我们在使用 Context 的时候的方法就是它实现的。
+ContextWrapper类介绍Co ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Blog/2020/04/12/Kotlin%E7%9A%84%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%B3%E9%94%AE%E5%AD%97/" title="Kotlin的几个常用关键字"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="Kotlin的几个常用关键字"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2020/04/12/Kotlin%E7%9A%84%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E5%85%B3%E9%94%AE%E5%AD%97/" title="Kotlin的几个常用关键字">Kotlin的几个常用关键字</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-12T15:46:25.000Z" title="发表于 2020-04-12 23:46:25">2020-04-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">移动端开发</a></span></div><div class="content">1. object 用于创建单例模式
+123object Resource &#123;    val name &#x3D; &quot;Rocker&quot;&#125;
+2. lazy 、lateinit 用于延迟初始化，第一次使用时再实例化
+1234567891011val name: String by lazy &#123;    &quot;Rocker&quot;&#125;lateinit var name:String;fun testName()&#123;  name &#x3D; &quot;Rocker&quot;&#125;&#x2F;&#x2F;两者区别：by lazy  修饰val的变量lateinit 修饰var的变量，且变量是非空的类型
+3. when 用于判断 相当于java中的switch()语句
+12345fun getName(age: Int) &#x3D; when (age) &#123;        12 -&gt; &quot;jim&quot;        18 -&gt; &quot;lili&quot;         ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Blog/2020/03/06/Android%20%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="Android 事件分发机制的设计与实现"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="Android 事件分发机制的设计与实现"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2020/03/06/Android%20%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="Android 事件分发机制的设计与实现">Android 事件分发机制的设计与实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-06T15:46:25.000Z" title="发表于 2020-03-06 23:46:25">2020-03-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">移动端开发</a></span></div><div class="content">完整的掌握 Android 事件分发体系并非易事，其整个流程涉及到了 系统启动流程（SystemServer）、输入管理(InputManager)**、系统服务和UI的通信（ViewRootImpl + Window + WindowManagerService）、View层级**的 事件分发机制 等等一系列的环节。
+事件拦截机制 是基于View层级 事件分发机制 的一个进阶性的知识点，本文将对其进行更细致化的讲解。事件拦截机制 本身就相对比较独立，因此本文不需要读者有 事件分发机制 相关的预备知识，对后者感兴趣的读者可以参考以下资料：
+反思 | Android 事件分发机制的设计与实现
+从事件序列说起
+什么是事件序列想要说清 事件分发机制 和 事件拦截机制，事件序列 是首先要理解的概念。什么是事件序列？Google官方文档中对其描述为 The duration of the touch，顾名思义，我们可以将其理解为 用户一次完整的触摸操作流程—— 举例来说，用户单击按钮、用户滑动屏幕、用户长按屏幕中某个UI元素等等，都属于该范畴。
+缘由为什么 事件序列 是一个非常重要的概念？事件分 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Blog/2020/02/12/React%20class%20&amp;%20function%20component%20%E7%9A%84%E5%8C%BA%E5%88%AB/" title="function和class component"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="function和class component"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2020/02/12/React%20class%20&amp;%20function%20component%20%E7%9A%84%E5%8C%BA%E5%88%AB/" title="function和class component">function和class component</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-12T15:46:25.000Z" title="发表于 2020-02-12 23:46:25">2020-02-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></span></div><div class="content">function和class component首先看下function component：
+123function Welcome(props) &#123;  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;&#x2F;h1&gt;;&#125;
+它就是一个函数接受一个props参数返回了一个jsx语法的标签，接下来看下class 语法的component
+12345class Welcome extends React.Component &#123;  render() &#123;    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;&#x2F;h1&gt;;  &#125;&#125;
+这两个component是等效的。
+function和class component 的区别1.syntax 语法：functional component语法更简单，只需要传入一个props参数，返回一个react片段。class component 要求先继承React. ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Blog/2019/06/22/CSS%E4%B8%ADmargin%E5%92%8Cpadding%E7%9A%84%E7%94%A8%E6%B3%95/" title="CSS中margin和padding的用法"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="CSS中margin和padding的用法"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2019/06/22/CSS%E4%B8%ADmargin%E5%92%8Cpadding%E7%9A%84%E7%94%A8%E6%B3%95/" title="CSS中margin和padding的用法">CSS中margin和padding的用法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-06-22T15:46:25.000Z" title="发表于 2019-06-22 23:46:25">2019-06-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></span></div><div class="content">CSS中，margin外间距分别一个值、两个值、三个值、四个值代码的意思：
+1234margin:10px;&#x2F;&#x2F;上、右、下、左margin:10px 5px;&#x2F;&#x2F;上下：10px,右左：5pxmargin:10px 5px 15px;&#x2F;&#x2F;上10px、右和左5px、下15pxmargin:10px 5px 15px 20px;&#x2F;&#x2F;上10px、右5px、下15px、左20px
+
+CSS中，padding内间距分别一个值、两个值、三个值、四个值代码的意思：
+1234padding:10px;&#x2F;&#x2F;上、右、下、左padding:10px 5px;&#x2F;&#x2F;上下：10px,右左：5pxpadding:10px 5px 15px;&#x2F;&#x2F;上10px、右和左5px、下15pxpadding:10px 5px 15px 20px;&#x2F;&#x2F;上10px、右5px、下15px、左20px
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/Blog/2019/01/06/hello-world/" title="使用方法"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="使用方法"></a></div><div class="recent-post-info"><a class="article-title" href="/Blog/2019/01/06/hello-world/" title="使用方法">使用方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-01-06T15:46:25.000Z" title="发表于 2019-01-06 23:46:25">2019-01-06</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
+
+More info: Writing
+Run server1$ hexo server
+
+More info: Server
+Generate static files1$ hexo generate
+
+More info: Generating
+Deploy to remote sites1$ hexo deploy
+
+More info: Deployment
+部署流程：将写好的.md文件放置到source/_posts文件夹中，在项目根目录下依次执行以下命令：123he ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/Blog/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/Blog/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/Blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name"></div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Blog/2022/07/05/react%20hooks%E7%9A%84%E4%BD%BF%E7%94%A8/" title="react hooks的使用"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="react hooks的使用"/></a><div class="content"><a class="title" href="/Blog/2022/07/05/react%20hooks%E7%9A%84%E4%BD%BF%E7%94%A8/" title="react hooks的使用">react hooks的使用</a><time datetime="2022-07-05T08:36:36.000Z" title="发表于 2022-07-05 16:36:36">2022-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Blog/2022/06/16/%E7%A7%BB%E5%8A%A8POS%E8%B4%AD%E7%89%A9%E8%BD%A6%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/" title="移动POS购物车优化实践"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="移动POS购物车优化实践"/></a><div class="content"><a class="title" href="/Blog/2022/06/16/%E7%A7%BB%E5%8A%A8POS%E8%B4%AD%E7%89%A9%E8%BD%A6%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/" title="移动POS购物车优化实践">移动POS购物车优化实践</a><time datetime="2022-06-16T11:46:25.000Z" title="发表于 2022-06-16 19:46:25">2022-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Blog/2022/06/09/%E5%9F%BA%E4%BA%8EJenkins%E6%90%AD%E5%BB%BA%E5%AE%9A%E5%88%B6%E5%8C%96%E5%AE%89%E5%8D%93%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/" title="基于Jenkins搭建定制化安卓自动化打包构建流程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="基于Jenkins搭建定制化安卓自动化打包构建流程"/></a><div class="content"><a class="title" href="/Blog/2022/06/09/%E5%9F%BA%E4%BA%8EJenkins%E6%90%AD%E5%BB%BA%E5%AE%9A%E5%88%B6%E5%8C%96%E5%AE%89%E5%8D%93%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/" title="基于Jenkins搭建定制化安卓自动化打包构建流程">基于Jenkins搭建定制化安卓自动化打包构建流程</a><time datetime="2022-06-09T07:20:59.796Z" title="发表于 2022-06-09 15:20:59">2022-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Blog/2022/06/09/8081%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8/" title="8081端口被占用"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="8081端口被占用"/></a><div class="content"><a class="title" href="/Blog/2022/06/09/8081%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8/" title="8081端口被占用">8081端口被占用</a><time datetime="2022-06-09T05:58:38.966Z" title="发表于 2022-06-09 13:58:38">2022-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Blog/2021/12/21/%E5%AE%89%E5%8D%93okhttp%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="安卓okhttp网络框架使用说明"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/Blog/img/404.jpg'" alt="安卓okhttp网络框架使用说明"/></a><div class="content"><a class="title" href="/Blog/2021/12/21/%E5%AE%89%E5%8D%93okhttp%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="安卓okhttp网络框架使用说明">安卓okhttp网络框架使用说明</a><time datetime="2021-12-21T15:46:25.000Z" title="发表于 2021-12-21 23:46:25">2021-12-21</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">前端开发</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">移动端开发</span><span class="card-category-list-count">11</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/Blog/tags/Android/" style="font-size: 1.5em; color: #99a9bf">Android</a> <a href="/Blog/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/Blog/tags/Mac/" style="font-size: 1.1em; color: #999">Mac</a> <a href="/Blog/tags/React-Native/" style="font-size: 1.37em; color: #99a4b2">React-Native</a> <a href="/Blog/tags/hot-fix/" style="font-size: 1.1em; color: #999">hot fix</a> <a href="/Blog/tags/kotlin/" style="font-size: 1.1em; color: #999">kotlin</a> <a href="/Blog/tags/react/" style="font-size: 1.23em; color: #999ea6">react</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/Blog/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">17</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-07-05T09:47:28.067Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By null</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/Blog/js/utils.js"></script><script src="/Blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
